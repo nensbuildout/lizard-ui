@@ -68,6 +68,8 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # Other finders..
+    # Enable support for django-compressor.
     'compressor.finders.CompressorFinder',
+    # Enable 'old' /media directories in addition to /static.
+    'staticfiles.finders.LegacyAppDirectoriesFinder',
     )
