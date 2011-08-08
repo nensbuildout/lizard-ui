@@ -10,6 +10,7 @@ SITE_ID = 1
 INSTALLED_APPS = [
     'lizard_ui',
     'compressor',
+    'staticfiles',
     'south',
     'django_extensions',
     'django_nose',
@@ -66,8 +67,8 @@ STATIC_URL = '/static_media/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'staticfiles.finders.FileSystemFinder',
+    'staticfiles.finders.AppDirectoriesFinder',
     # Enable support for django-compressor.
     'compressor.finders.CompressorFinder',
     # Enable 'old' /media directories in addition to /static.
