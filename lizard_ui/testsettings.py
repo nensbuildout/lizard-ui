@@ -2,13 +2,14 @@ import os
 
 DEBUG = True
 TEMPLATE_DEBUG = True
-DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = 'test.db'
+DATABASES = {
+    'default': {'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': 'test.db'},
+    }
 SITE_ID = 1
 INSTALLED_APPS = [
     'lizard_ui',
     'compressor',
-    'staticfiles',
     'south',
     'django_extensions',
     'django_nose',
@@ -64,24 +65,9 @@ STATIC_URL = '/static_media/'
 # static media into STATIC_ROOT/admin.
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
-# Storage engine to be used during compression
-COMPRESS_STORAGE = "staticfiles.storage.StaticFileStorage"
-# The URL that linked media will be read from and compressed
-# media will be written to.
-COMPRESS_URL = STATIC_URL
-# The absolute file path that linked media will be read from
-# and compressed media will be written to.
-COMPRESS_ROOT = STATIC_ROOT
-
-
-# Used for django-staticfiles
-TEMPLATE_CONTEXT_PROCESSORS = (
-    # Default items.
-    "django.core.context_processors.auth",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.media",
-    # Needs to be added for django-staticfiles to allow you
-    # to use {{ STATIC_URL }}myapp/my.css in your templates.
-    'staticfiles.context_processors.static_url',
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # Other finders..
+    'compressor.finders.CompressorFinder',
     )

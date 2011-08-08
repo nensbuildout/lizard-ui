@@ -12,9 +12,8 @@ long_description = '\n\n'.join([
 
 install_requires = [
     'BeautifulSoup',
-    'Django',
+    'Django >= 1.3',
     'django-nose',
-    'django-staticfiles',
     'django-extensions',
     'django_compressor',  # Yes, underscore.
     'south',
