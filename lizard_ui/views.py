@@ -2,12 +2,13 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils import simplejson as json
-from django.views.generic.base import View
 from django.views.generic.base import TemplateResponseMixin
+from django.views.generic.base import View
 
 
 def simple_login(request, next=None, template='lizard_ui/login.html'):
@@ -118,18 +119,63 @@ class BaseView(View, TemplateResponseMixin):
             self, self.context, **response_kwargs)
 
     def get(self, request, *args, **kwargs):
+        """Return response.
+
+        In addition to what django's base template view does, we set ourselves
+        (we're an object) as ``view`` in the context dictionary. This means
+        that we can just set attributes on ourselves instead of assembling
+        everything in a context dictionary. And the template can call methods
+        that we provide. Handy!
+
+        ``run()`` is called: do calculations in here.
+
+        """
         self.context = {}
-        self.context['params'] = self.kwargs
-        # ^^^ Django's TemplateView does this too.
+        self.context['view'] = self
         self.run()
         return self.render_to_response()
 
     def run(self):
-        raise NotImplementedError
+        """Do calculations or so before rendering the response.
+
+        Store attributes on self if you want to make them available in the
+        template context. (Access them there as ``view.attribute``). Don't
+        forget to call your superclass's run() method!
+
+        """
+        pass
 
 
 class TestView(BaseView):
     template_name = 'lizard_ui/testview.html'
+    bla = 0
+
+    def method(self):
+        self.bla += 1
+        return self.bla
 
     def run(self):
-        self.context['name'] = 'reinout'
+        super(TestView, self).run()
+        self.name = 'reinout'
+
+
+class TestBox(BaseView):
+    template_name = 'lizard_ui/testbox.html'
+
+    def run(self):
+        super(TestBox, self).run()
+        self.name = self.kwargs['name']
+
+
+class TestContainer(BaseView):
+    template_name = 'lizard_ui/testcontainer.html'
+
+    def box_urls(self):
+        names = ['Reinout', 'Jack', 'Alexandr', 'Coen']
+        urls = [reverse('lizard_ui.testbox',
+                        kwargs={'name': name})
+                for name in names]
+        return urls
+
+    def run(self):
+        super(TestContainer, self).run()

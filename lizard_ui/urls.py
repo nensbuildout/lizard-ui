@@ -21,6 +21,12 @@ urlpatterns = patterns(
     url(r'^$',
         lizard_ui.views.TestView.as_view(),
         name='lizard_ui.testview'),
+    url(r'^testbox/(?P<name>.*)/$',
+        lizard_ui.views.TestBox.as_view(),
+        name='lizard_ui.testbox'),
+    url(r'^testcontainer/$',
+        lizard_ui.views.TestContainer.as_view(),
+        name='lizard_ui.testcontainer'),
     )
 
 

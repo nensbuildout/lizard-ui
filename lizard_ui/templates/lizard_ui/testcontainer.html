@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>Test container</title>
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}jquery/jquery.js"></script>
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}lizard_ui/test.js"></script>
+  </head>
+  <body>
+    <h1>Test container</h1>
+    <ul class="container-column">
+      {% for box_url in view.box_urls %}
+      <li><a href="{{ box_url }}">{{ box_url }}</a></li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
