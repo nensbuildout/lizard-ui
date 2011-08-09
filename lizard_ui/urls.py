@@ -2,6 +2,7 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 from django.contrib import admin
 
+import lizard_ui.views
 
 admin.autodiscover()
 
@@ -17,6 +18,9 @@ urlpatterns = patterns(
     url(r'^screen/(?P<application_screen_slug>.*)/$',
         'lizard_ui.views.application_screen',
         name='lizard_ui.application_screen'),
+    url(r'^$',
+        lizard_ui.views.TestView.as_view(),
+        name='lizard_ui.testview'),
     )
 
 
