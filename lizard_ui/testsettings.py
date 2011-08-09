@@ -28,10 +28,9 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 # but we want to test django_compressor's compressing which
 # needs a media url and root and so.
 
-# Set COMPRESS to True if you want to test compression when
-# DEBUG == True.  (By default, COMPRESS is the opposite of
-# DEBUG).
-COMPRESS = False
+# We switch off compression so that the automated tests also can get the full
+# javascript.
+COMPRESS_ENABLED = False
 
 # SETTINGS_DIR allows media paths and so to be relative to
 # this settings file instead of hardcoded to

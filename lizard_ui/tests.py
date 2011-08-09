@@ -22,7 +22,8 @@ class TestLoginLogout(TestCase):
         # Login page must have "login-button".
         response = self.client.post('/accounts/login/', {})
         self.assertEquals(response.status_code, 200)
-        self.assertTrue("login-button" in response.content)
+        self.assertTrue("#login-button" in response.content)
+        # ^^^ That's inside the inline javascript, btw.
 
     def test_invalid_user(self):
         response = self.client.post('/accounts/login/',
