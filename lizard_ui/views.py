@@ -177,5 +177,25 @@ class TestContainer(BaseView):
                 for name in names]
         return urls
 
+    def container_columns(self):
+        columns = []
+        column = {}
+        column['id'] = 'column_1'
+        column['class'] = 'one-third'
+        column['box_urls'] = [
+            reverse('lizard_ui.testbox',
+                        kwargs={'name': 'reinout'}),
+            ]
+        columns.append(column)
+        column = {}
+        column['id'] = 'column_2'
+        column['class'] = 'two-thirds'
+        names = ['Jack', 'Alexandr', 'Coen']
+        column['box_urls'] = [reverse('lizard_ui.testbox',
+                                      kwargs={'name': name})
+                              for name in names]
+        columns.append(column)
+        return columns
+
     def run(self):
         super(TestContainer, self).run()

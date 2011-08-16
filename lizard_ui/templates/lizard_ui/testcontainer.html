@@ -5,13 +5,22 @@
             src="{{ STATIC_URL }}jquery/jquery.js"></script>
     <script type="text/javascript"
             src="{{ STATIC_URL }}lizard_ui/test.js"></script>
+    <link type="text/css"
+          href="{{ STATIC_URL }}lizard_ui/test.css"
+          rel="stylesheet"
+          media="screen, projection" />
   </head>
   <body>
     <h1>Test container</h1>
-    <ul class="container-column">
-      {% for box_url in view.box_urls %}
-      <li><a href="{{ box_url }}">{{ box_url }}</a></li>
+    <div class="container">
+      {% for container_column in view.container_columns %}
+      <ul class="container-column {{ container_column.class }}"
+          id="{{ container_column.id }}">
+        {% for box_url in container_column.box_urls %}
+        <li><a href="{{ box_url }}">{{ box_url }}</a></li>
+        {% endfor %}
+      </ul>
       {% endfor %}
-    </ul>
+    </div>
   </body>
 </html>

@@ -1,0 +1,23 @@
+ul.container-column
+{ padding-left: 0;
+  }
+
+ul.container-column li
+{ display: box;
+  list-style-type: none;
+  border: 1px solid black;
+  }
+
+ul.one-third
+{ width: 300px;
+  float: left;
+  }
+
+ul.two-thirds
+{ width: 600px;
+  float: left;
+  }
+
+div.container
+{ display: block;
+  }
