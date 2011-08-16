@@ -1,5 +1,8 @@
 import os
 
+from lizard_ui import defaultsettings
+
+
 DEBUG = True
 TEMPLATE_DEBUG = True
 DATABASES = {
@@ -9,17 +12,8 @@ DATABASES = {
 SITE_ID = 1
 INSTALLED_APPS = [
     'lizard_ui',
-    'compressor',
-    'staticfiles',
     'south',
-    'django_extensions',
-    'django_nose',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    ]
+    ] + defaultsettings.INSTALLED_APPS
 ROOT_URLCONF = 'lizard_ui.urls'
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
@@ -65,11 +59,4 @@ STATIC_URL = '/static_media/'
 # static media into STATIC_ROOT/admin.
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
-STATICFILES_FINDERS = (
-    'staticfiles.finders.FileSystemFinder',
-    'staticfiles.finders.AppDirectoriesFinder',
-    # Enable support for django-compressor.
-    'compressor.finders.CompressorFinder',
-    # Enable 'old' /media directories in addition to /static.
-    'staticfiles.finders.LegacyAppDirectoriesFinder',
-    )
+STATICFILES_FINDERS = defaultsettings.STATICFILES_FINDERS
