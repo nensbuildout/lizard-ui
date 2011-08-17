@@ -73,3 +73,37 @@ STATICFILES_FINDERS = (
     # Enable 'old' /media directories in addition to /static.
     'staticfiles.finders.LegacyAppDirectoriesFinder',
     )
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s %(name)s %(levelname)s\n%(message)s',
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console':{
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+            'formatter': 'simple'
+            },
+        'logfile': {
+            'level': 'WARN',
+            'class': 'logging.FileHandler',
+            'formatter': 'verbose',
+            'filename': os.path.join(BUILDOUT_DIR,
+                                     'var', 'log', 'django.log'),
+            },
+        },
+    'loggers': {
+        '': {
+            'handlers':['console', 'logfile'],
+            'propagate': True,
+            'level':'DEBUG',
+            },
+        },
+    }
