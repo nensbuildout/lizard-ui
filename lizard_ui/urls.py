@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib import admin
 
 import lizard_ui.views
+import lizard_ui.configchecker
 
 admin.autodiscover()
 
