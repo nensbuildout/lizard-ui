@@ -15,7 +15,7 @@ install_requires = [
     'Django >= 1.3',
     'django-nose',
     'django-extensions',
-    'django-staticfiles',
+    'django-staticfiles >= 1.0',
     'django_compressor',  # Yes, underscore.
     'south',
     ],
