@@ -32,6 +32,7 @@ def register(checker):
 
     """
     _checkers.append(checker)
+    return checker
 
 
 def checkers():
@@ -52,7 +53,15 @@ def checker():
         if not hasattr(settings, setting):
             logger.error("Setting %s is missing. Example value: %s",
                          setting, getattr(example_settings, setting))
-
+    if not ('compressor.finders.CompressorFinder'
+            in settings.STATICFILES_FINDERS):
+        logger.error("'compressor.finders.CompressorFinder' is missing "
+                     "from STATICFILES_FINDERS.")
+    for old_setting in ['COMPRESS_STORAGE', 'COMPRESS_URL', 'COMPRESS_ROOT']:
+        if hasattr(settings, old_setting):
+            logger.error("Old django_compressor setting %s found: remove it.",
+                         old_setting)
+    # TODO: compressor settings.
     for app in ['lizard_ui',
                 'compressor',
                 'staticfiles',
@@ -63,4 +72,3 @@ def checker():
                 'django.contrib.sites']:
         if app not in settings.INSTALLED_APPS:
             logger.error("%s is missing from INSTALLED_APPS.", app)
-
