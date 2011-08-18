@@ -4,6 +4,7 @@ import json
 
 from lizard_ui.middleware import TracebackLoggingMiddleware
 from lizard_ui.models import ApplicationScreen
+from lizard_ui.configchecker import checker
 from lizard_ui.templatetags.utility import dutch_timedelta
 from lizard_ui.templatetags.utility import euro
 from lizard_ui.templatetags.utility import application_icons
@@ -132,3 +133,10 @@ class TestTracebackLoggingMiddleware(TestCase):
         """Just test that it doesn't crash."""
         middleware = TracebackLoggingMiddleware()
         middleware.process_exception(self.request, self.exception)
+
+
+class TestConfigChecker(TestCase):
+
+    def test_smoke(self):
+        """Just test that it doesn't crash and burn."""
+        checker()
