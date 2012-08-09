@@ -118,6 +118,7 @@ function reloadLocalizedGraphs($location, max_image_width) {
 
 function reloadFlotGraph($graph, max_image_width, callback) {
     var url = $graph.attr('data-flot-graph-data-url');
+
     if (url !== undefined) {
         $.ajax({
             url: url,
@@ -128,6 +129,9 @@ function reloadFlotGraph($graph, max_image_width, callback) {
                 if (callback !== undefined) {
                     callback();
                 }
+            },
+            error: function (response) {
+              $graph.html('<p>Error loading data, probably timeout</p>');
             },
             timeout: 20000
         });
@@ -144,7 +148,7 @@ function reloadFlotGraph($graph, max_image_width, callback) {
 function flotGraphLoadData($graph, max_image_width, response) {
     var plot;
     var data = response.data;
-    
+
     var options = {
         series: {
             points: { show: true, hoverable: true }
@@ -178,7 +182,7 @@ function flotGraphLoadData($graph, max_image_width, response) {
         if (zoom) {
             var x_min_zoom, x_max_zoom, tick_size, diff_time, diff_seconds;
             x_min_zoom = ranges.xaxis.from;
-            x_max_zoom = ranges.xaxis.to; 
+            x_max_zoom = ranges.xaxis.to;
             tick_size = [];
             diff_time = x_max_zoom - x_min_zoom;
             diff_seconds = diff_time/1000;
@@ -186,9 +190,9 @@ function flotGraphLoadData($graph, max_image_width, response) {
             diff_hours = diff_time/1000/60/60;
             //TODO get min time stap from timeseries
             if (diff_hours > 24*30) {
-                $.merge(tick_size, [1, "month"]); 
+                $.merge(tick_size, [1, "month"]);
             } else if (diff_hours > 24) {
-                $.merge(tick_size, [1, "day"]); 
+                $.merge(tick_size, [1, "day"]);
             } else if (diff_hours > 1) {
                 $.merge(tick_size, [1, "hour"]);
             } else if (diff_minutes > 45) {
