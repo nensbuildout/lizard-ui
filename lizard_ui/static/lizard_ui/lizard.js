@@ -170,7 +170,7 @@ function flotGraphLoadData($graph, max_image_width, response) {
         },
         xaxis: {
             mode: "time",
-            tickSize: [2, "day"],
+            // tickSize: [2, "day"],
             axisLabel: response.x_label, // plugin jquery.flot.axislabels.js
             axisLabelUseCanvas: true,
             axisLabelFontFamily: 'Verdana,Arial,sans-serif',
