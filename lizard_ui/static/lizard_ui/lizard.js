@@ -153,6 +153,10 @@ function flotGraphLoadData($graph, max_image_width, response) {
         series: {
             points: { show: true, hoverable: true }
         },
+        // Legend disabled just for the ijkdijk project.
+        legend: {
+          show: false
+        },
         // disabled, flot seems to be able to determine these
         //yaxis: {
         //    min: response.y_min,
