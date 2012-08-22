@@ -183,7 +183,11 @@ function flotGraphLoadData($graph, max_image_width, response) {
     if (data.min) {
         options.xaxis.min = data.min;
         options.xaxis.max = data.max;
-    }
+    };
+    if (data.data.min) {
+        options.xaxis.min = data.data.min;
+        options.xaxis.max = data.data.max;
+    };
 
     $graph.bind("plotselected", function (event, ranges) {
         //$("#selection").text(ranges.xaxis.from.toFixed(1) + " to " + ranges.xaxis.to.toFixed(1));
