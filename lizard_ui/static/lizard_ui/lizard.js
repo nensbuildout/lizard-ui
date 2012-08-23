@@ -182,6 +182,7 @@ function flotGraphLoadData($graph, max_image_width, response) {
     // Temp hack for min/max graph ranges in the ijkdijk.
     options.xaxis.min = data.min;
     options.xaxis.max = data.max;
+    window.graphjson = data;
     window.datamin = data.min;
     window.datamax = data.max;
 
