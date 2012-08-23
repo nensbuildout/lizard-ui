@@ -180,11 +180,8 @@ function flotGraphLoadData($graph, max_image_width, response) {
         grid: { hoverable: true }
     };
     // Temp hack for min/max graph ranges in the ijkdijk.
-    options.xaxis.min = data.min;
-    options.xaxis.max = data.max;
-    window.graphjson = data;
-    window.datamin = data.min;
-    window.datamax = data.max;
+    options.xaxis.min = data[0].min;
+    options.xaxis.max = data[0].max;
 
     $graph.bind("plotselected", function (event, ranges) {
         //$("#selection").text(ranges.xaxis.from.toFixed(1) + " to " + ranges.xaxis.to.toFixed(1));
