@@ -183,6 +183,8 @@ function flotGraphLoadData($graph, max_image_width, response) {
     if (data.min) {
         options.xaxis.min = data.min;
         options.xaxis.max = data.max;
+        window.datamin = data.min;
+        window.datamax = data.max;
     };
 
     $graph.bind("plotselected", function (event, ranges) {
