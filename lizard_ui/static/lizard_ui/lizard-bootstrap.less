@@ -59,7 +59,10 @@
 .scroll-y {
   overflow-y: auto;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+  // -webkit-overflow-scrolling: touch;
+  // See http://stackoverflow.com/questions/7808110/css3-property-webkit-overflow-scrollingtouch-error
+  // and https://github.com/twitter/bootstrap/issues/3663 for why
+  // Reinout disabled the ipad fancy scrolling.
 }
 // And to make sure there are no scrollbars when we slide a sidebar out, the
 // page needs to have overflow hidden.
@@ -381,7 +384,7 @@ div #login-error {
         list-style: none;
         padding: 0;
     }
-    
+
     li {
         margin: 2px 0;
     }
