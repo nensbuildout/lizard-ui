@@ -7,7 +7,7 @@ long_description = '\n\n'.join([
     open('TODO.rst').read(),
     open('CREDITS.rst').read(),
     open('CHANGES.rst').read(),
-    ])
+])
 
 install_requires = [
     'BeautifulSoup',
@@ -21,10 +21,10 @@ install_requires = [
     'raven',
     'south',
     'werkzeug',
-    ],
+    'transifex-client',
+],
 
-tests_require = [
-    ]
+tests_require = []
 
 setup(name='lizard-ui',
       version=version,
