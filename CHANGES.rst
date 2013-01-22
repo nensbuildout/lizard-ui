@@ -2,13 +2,22 @@ Changelog of lizard-ui
 ======================
 
 
-4.16 (unreleased)
+4.17 (unreleased)
 -----------------
 
-- Changed login/logout to be real hyperlinks instead of the modal popup.
-  The links now point to the url alias named 'login'.
+- Nothing changed yet.
+
+
+4.16 (2013-01-22)
+-----------------
+
+- When SSO_ENABLED evaluates to True in your settings,
+  login/logout become real hyperlinks, instead of the modal popup.
+  The links then point to the url alias named 'login'.
 
 - Fixed a bug when map is unavailable during opening / closing the sidebar.
+
+- Update to jQuery UI 1.8.24.
 
 
 4.15 (2012-12-19)
